@@ -1,0 +1,284 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-title" content="AI Apps" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+
+  <!-- Favicon link -->
+  <link rel="icon" type="image/x-icon" href="https://s3.amazonaws.com/aiappsinc.com/favicon.ico" />
+
+  <!-- Other favicon formats -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://s3.amazonaws.com/aiappsinc.com/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s3.amazonaws.com/aiappsinc.com/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s3.amazonaws.com/aiappsinc.com/favicon-16x16.png" />
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="https://s3.amazonaws.com/aiappsinc.com/site.webmanifest" />
+
+  <style>
+    .button-below-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 90%);
+    }
+
+    .navbar {
+      overflow: hidden;
+      background-color: #000;
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 16px;
+    }
+
+    .navbar a,
+    .dropbtn {
+      color: #f2f2f2;
+      padding: 14px 16px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 17px;
+      background-color: #000;
+      border: none;
+    }
+
+    .navbar a#title {
+      display: inline-block;
+    }
+
+    .dropbtn {
+      display: inline-block;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar a:hover,
+    .dropdown:hover .dropbtn,
+    .user-dropdown:hover .dropbtn {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #000;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: #f2f2f2;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+      font-size: 17px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .user-dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #000;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .user-dropdown-content a {
+      color: #f2f2f2;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+      font-size: 17px;
+    }
+
+    .user-dropdown-content a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .user-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .center {
+      text-align: center;
+      font-size: 36px;
+      font-family: "Arial", sans-serif;
+      color: #000;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-left: -1rem;
+      /* add negative margin to counteract the left margin of the first card in a row */
+      margin-right: -1rem;
+      /* add negative margin to counteract the right margin of the last card in a row */
+    }
+
+    .col {
+      flex: 0 0 calc(33% - 2rem);
+      /* change to 33% for 3 cards per row and subtract more for increased spacing */
+      margin: 1rem;
+      /* add margins around each card */
+    }
+
+    .card {
+      background: #fff;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+      height: 100%;
+    }
+
+    /* Responsive layout - makes a one column layout instead of a three-column layout */
+    @media (max-width: 600px) {
+      .col {
+        flex: 100%;
+        max-width: 100%;
+      }
+    }
+
+    .card:hover {
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.13);
+    }
+
+    .card-title {
+      background: #000;
+      color: #fff;
+      padding: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      /* adjust this value as needed */
+      object-fit: cover;
+      /* ensures that aspect ratio is maintained while filling the box */
+    }
+
+    @media (max-width: 600px) {
+      .w3-button {
+        border-radius: 12px;
+        /* Adjust as necessary */
+      }
+    }
+  </style>
+  <meta property="og:title" content="AI Apps" />
+  <meta property="og:description" content="AI Apps provides various technology services." />
+  <meta property="og:url" content="https://aiappsinc.com/" />
+  <meta property="og:image" content="https://s3.amazonaws.com/aiappsinc.com/sailboat_ai.jpg" />
+  <meta property="og:type" content="website" />
+</head>
+
+<body>
+  <div class="navbar" id="myNavbar">
+
+    <a id="title" href="/">
+      <b>AI</b> Apps
+      <img src="https://s3.amazonaws.com/aiappsinc.com/favicon.ico" alt="Logo"
+        style="height:20px; width:20px; vertical-align: middle;">
+    </a>
+
+    <div class="navbar-right">
+      <div class="dropdown">
+        <button class="dropbtn">Menu
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="/chatbots">Chatbots</a>
+          <a href="/services">Services</a>
+          <a href="/#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <div class="user-dropdown">
+        <button class="dropbtn">Users
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="user-dropdown-content">
+          <a href="/chatbots">Login</a>
+          <a href="/services">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      var dropdown = document.querySelector('.dropdown');
+      dropdown.addEventListener('click', function (e) {
+        console.log("hello");
+        var dropdownContent = this.querySelector('.dropdown-content');
+        // dropdownContent.style.display = 'block';
+        if (dropdownContent.style.display === 'block') {
+          dropdownContent.style.display = 'none';
+        } else {
+          dropdownContent.style.display = 'block';
+        }
+        e.stopPropagation();
+      }, false);
+    }
+    window.onload = function () {
+      var dropdown = document.querySelector('.user-dropdown');
+      dropdown.addEventListener('click', function (e) {
+        console.log("hello");
+        var dropdownContent = this.querySelector('.user-dropdown-content');
+        // dropdownContent.style.display = 'block';
+        if (dropdownContent.style.display === 'block') {
+          dropdownContent.style.display = 'none';
+        } else {
+          dropdownContent.style.display = 'block';
+        }
+        e.stopPropagation();
+      }, false);
+    }
+  </script>
+  {% block content %} {% endblock %}
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-16">
+    <p>© 2023 by AI Apps Inc.</p>
+  </footer>
+
+  <script>
+    window.danteEmbed = "https://chat.dante-ai.com/embed?kb_id=961df222-3e68-4256-a4f8-3b3b80c5b4d9&token=9de5277a-51eb-4523-9e4f-ba3d9c9fbf90&modeltype=gpt-3.5-turbo&mode=false&bubble=true&image=null&bubbleopen=false"
+  </script>
+  <script src="https://chat.dante-ai.com/bubble-embed.js"></script>
+</body>
+
+</html>
